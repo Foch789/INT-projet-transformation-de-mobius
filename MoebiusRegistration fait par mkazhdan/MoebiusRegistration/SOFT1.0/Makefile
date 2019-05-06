@@ -36,14 +36,14 @@
 CC = cc
 
 # define for fftw, otherwise leave blank
-## FFTWINC = -I/net/misc/geelong/local/linux/include
-## FFTWLIB = -L/net/misc/geelong/local/linux/lib -lfftw3
+FFTWINC = -I/net/misc/geelong/local/linux/include
+FFTWLIB = -L/net/misc/geelong/local/linux/lib -lfftw3
 
 ## FFTWINC = -I/net/misc/geelong/local/athlon/include
 ## FFTWLIB = -L/net/misc/geelong/local/athlon/lib -lfftw3
 
-FFTWINC =
-FFTWLIB =
+## FFTWINC =
+## FFTWLIB =
 
 
 ## define WALLCLOCK if want walltime and not cputime
