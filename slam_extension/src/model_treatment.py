@@ -16,6 +16,8 @@ def compare_mesh_angle(mesh1,mesh2):
     """
         Compare_mesh_angle
 
+        Compare the angles of 2 trimesh and add information (difference between 2 models) in plot
+
         :param mesh1
         :type trimesh
 
@@ -23,27 +25,28 @@ def compare_mesh_angle(mesh1,mesh2):
         :type trimesh
     """
 
-    angle_diff = dist.angle_difference(mesh1, mesh2)
-
-    f, ax = plt.subplots(1, 1)
-    ax.set_title('angles compare ' + mesh1.metadata['name'] + " to " + mesh2.metadata['name'])
-    ax.hist(angle_diff.flatten(), 100)
-    ax.grid(True)
+    return dist.angle_difference(mesh1, mesh2)
 
     pass
 
 
 def compare_mesh_list_angle(meshs):
     """
-        Compare_mesh_angle
+        Compare_mesh_list_angle
 
-        :param mesh1
-        :type array [file_name,trimesh,...]
+        Compare all models by their angles with the first model (first trismesh of array)
+
+        :param meshs
+        :type array [trimesh,trimesh,...]
     """
 
     mesh1 = meshs[0]
     for i in range(1, len(meshs)):
-        compare_mesh_angle(mesh1, meshs[i])
+        angle_diff = compare_mesh_angle(mesh1, meshs[i])
+        f, ax = plt.subplots(1, 1)
+        ax.set_title('angles compare ' + mesh1.metadata['name'] + " to " + meshs[i].metadata['name'])
+        ax.hist(angle_diff.flatten(), 100)
+        ax.grid(True)
 
     pass
 
@@ -54,24 +57,18 @@ def compare_mesh_list_angle(meshs):
 
 def compare_mesh_area(mesh1, mesh2):
     """
-        Compare_mesh_angle
+        Compare_mesh_area
+
+        Compare the areas of 2 trimesh and add information (difference between 2 models) in plot
 
         :param mesh1
-        :type array [file_name,trimesh,...]
+        :type trimesh
 
         :param mesh2
-        :type array [file_name,trimesh,...]
+        :type trimesh
     """
 
-    area_diff = dist.area_difference(mesh1, mesh2)
-
-    f, ax = plt.subplots(1, 1)
-    ax.set_title('areas compare ' + mesh1.metadata['name'] + " to " + mesh2.metadata['name'])
-    ax.hist(area_diff.flatten(), 100)
-    ax.grid(True)
-
-    # splt.pyglet_plot(mesh1)
-    # splt.pyglet_plot(mesh2)
+    return dist.area_difference(mesh1, mesh2)
 
     pass
 
@@ -80,16 +77,94 @@ def compare_mesh_list_area(meshs):
     """
         Compare_mesh_angle
 
-        :param mesh
-        :type array [file_name,trimesh]
+        Compare all models by their areas with the first model (first trismesh of array)
+
+        :param meshs
+        :type array [trimesh,trimesh,...]
     """
 
     mesh1 = meshs[0]
     for i in range(1, len(meshs)):
-        compare_mesh_area(mesh1, meshs[i])
+        area_diff = compare_mesh_area(mesh1, meshs[i])
+        f, ax = plt.subplots(1, 1)
+        ax.set_title('areas compare ' + mesh1.metadata['name'] + " to " + meshs[i].metadata['name'])
+        ax.hist(area_diff.flatten(), 100)
+        ax.grid(True)
 
     pass
 
+
+def compare_mesh_list_area_curve(meshs):
+    """
+        compare_mesh_list_area_curve
+
+        Compare all models by their areas with the first model (first trismesh of array) and draw a curve
+
+        :param meshs
+        :type array [trimesh,trimesh,...]
+    """
+
+    mesh1 = meshs[0]
+    array_area_diff_sum = []
+    array_temp = 0
+    max_sum_area = 0
+    for i in range(1, len(meshs)):
+        area_diff = compare_mesh_area(mesh1, meshs[i])
+
+        for p in range(0, len(area_diff)):
+            array_temp += area_diff[p]
+
+        if max_sum_area < array_temp:
+            max_sum_area = array_temp
+        array_area_diff_sum.append(array_temp)
+
+    fig, ax = plt.subplots(1, 1)
+    ax.plot([(meshs[i].metadata['iters']) for i in range(1, len(meshs))], array_area_diff_sum, 'ro-')
+    ax.set_title('areas compare')
+    ax.set_xlabel('Iterations')
+    ax.set_ylabel('Sum areas')
+    ax.axis([0, meshs[len(meshs) - 1].metadata['iters'] + (meshs[len(meshs) - 1].metadata['iters'] / 4), 0,
+             max_sum_area + (max_sum_area / 4)])
+    plt.show()
+
+    pass
+
+
+def compare_mesh_list_area_curve_pourcent(meshs):
+    """
+        compare_mesh_list_area_curve_pourcent
+
+        Compare all models by their areas with the first model (first trismesh of array) and draw a curve
+
+        :param meshs
+        :type array [trimesh,trimesh,...]
+    """
+
+    mesh1 = meshs[0]
+    print(mesh1.area_faces)
+    array_area_diff_sum = []
+    array_temp = 0
+    max_sum_area = 0
+    for i in range(0, len(meshs)):
+        area_diff = compare_mesh_area(mesh1, meshs[i])
+
+        for p in range(0, len(area_diff)):
+            array_temp += area_diff[p]
+
+        if max_sum_area < array_temp:
+            max_sum_area = array_temp
+        array_area_diff_sum.append(array_temp)
+
+    fig, ax = plt.subplots(1, 1)
+    ax.plot([(meshs[i].metadata['iters']) for i in range(1, len(meshs))], array_area_diff_sum, 'ro-')
+    ax.set_title('areas compare')
+    ax.set_xlabel('Iterations')
+    ax.set_ylabel('Sum areas')
+    ax.axis([0, meshs[len(meshs) - 1].metadata['iters'] + (meshs[len(meshs) - 1].metadata['iters'] / 4), 0,
+             max_sum_area + (max_sum_area / 4)])
+    plt.show()
+
+    pass
 
 # ========================================================================
 # ======================= Superimpose the texture ========================
@@ -98,7 +173,9 @@ def compare_mesh_list_area(meshs):
 
 def superimpose_the_texture(mesh1, mesh2):
     """
-        Compare_mesh_angle
+        Superimpose_the_texture
+
+        Take the texture of mesh2 and put on the mesh1
 
         :param mesh1
         :type trimesh
@@ -118,21 +195,14 @@ def superimpose_the_texture(mesh1, mesh2):
 
 def display_model(mesh):
     """
-        Compare_mesh_angle
+        Display_model
+
+        Display the model (by a window)
 
         :param mesh1
         :type trimesh
     """
-
-    # pool = mp.Pool(mp.cpu_count())
-
-    # pool.starmap(disp, [(meshs[i]) for i in range(0, len(meshs))])
-
-    # pool.close()
-
     splt.pyglet_plot(mesh)
-
-    # mesh.show()
 
     pass
 
@@ -140,15 +210,10 @@ def display_model(mesh):
 def display_plot():
 
     """
-        Compare_mesh_angle
+        Display_plot
 
-        :param mesh1
-        :type trimesh
-
-        :param mesh2
-        :type trimesh
+        Display of server (web) all the information in the plot
     """
     plt.show()
 
     pass
-
