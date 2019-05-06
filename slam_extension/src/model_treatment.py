@@ -13,7 +13,6 @@ import slam.plot as splt
 
 
 def compare_mesh_angle(mesh1,mesh2):
-
     """
         Compare_mesh_angle
 
@@ -24,21 +23,17 @@ def compare_mesh_angle(mesh1,mesh2):
         :type trimesh
     """
 
-    angle_diff = dist.angle_difference(mesh1[1], mesh2[1])
+    angle_diff = dist.angle_difference(mesh1, mesh2)
 
     f, ax = plt.subplots(1, 1)
-    ax.set_title('angles compare ' + mesh1[0] + " to " + mesh2[0])
+    ax.set_title('angles compare ' + mesh1.metadata['name'] + " to " + mesh2.metadata['name'])
     ax.hist(angle_diff.flatten(), 100)
     ax.grid(True)
-
-    # splt.pyglet_plot(mesh1)
-    # splt.pyglet_plot(mesh2)
 
     pass
 
 
-def mesh_angle(meshs):
-
+def compare_mesh_list_angle(meshs):
     """
         Compare_mesh_angle
 
@@ -46,15 +41,9 @@ def mesh_angle(meshs):
         :type array [file_name,trimesh,...]
     """
 
-    mesh1 = [meshs[0], meshs[1]]
-    i = 2
-    while i != len(meshs):
-        mesh2 = []
-        mesh2.append(meshs[i])
-        i += 1
-        mesh2.append(meshs[i])
-        i += 1
-        compare_mesh_angle(mesh1, mesh2)
+    mesh1 = meshs[0]
+    for i in range(1, len(meshs)):
+        compare_mesh_angle(mesh1, meshs[i])
 
     pass
 
@@ -63,25 +52,7 @@ def mesh_angle(meshs):
 # =====================================================
 
 
-def area_diffference(mesh1, mesh2):
-
-    """
-        Compare_mesh_angle
-
-        :param mesh1
-        :type trimesh
-
-        :param mesh2
-        :type trimesh
-
-        :return
-    """
-
-    return mesh1.area_faces - mesh2.area_faces
-
-
 def compare_mesh_area(mesh1, mesh2):
-
     """
         Compare_mesh_angle
 
@@ -92,10 +63,10 @@ def compare_mesh_area(mesh1, mesh2):
         :type array [file_name,trimesh,...]
     """
 
-    area_diff = area_diffference(mesh1[1], mesh2[1])
+    area_diff = dist.area_difference(mesh1, mesh2)
 
     f, ax = plt.subplots(1, 1)
-    ax.set_title('areas compare ' + mesh1[0] + " to " + mesh2[0])
+    ax.set_title('areas compare ' + mesh1.metadata['name'] + " to " + mesh2.metadata['name'])
     ax.hist(area_diff.flatten(), 100)
     ax.grid(True)
 
@@ -105,8 +76,7 @@ def compare_mesh_area(mesh1, mesh2):
     pass
 
 
-def mesh_area(meshs):
-
+def compare_mesh_list_area(meshs):
     """
         Compare_mesh_angle
 
@@ -114,16 +84,9 @@ def mesh_area(meshs):
         :type array [file_name,trimesh]
     """
 
-    mesh1 = [meshs[0], meshs[1]]
-    i = 2
-
-    while i != len(meshs):
-        mesh2 = []
-        mesh2.append(meshs[i])
-        i += 1
-        mesh2.append(meshs[i])
-        i += 1
-        compare_mesh_area(mesh1, mesh2)
+    mesh1 = meshs[0]
+    for i in range(1, len(meshs)):
+        compare_mesh_area(mesh1, meshs[i])
 
     pass
 
@@ -134,7 +97,6 @@ def mesh_area(meshs):
 
 
 def superimpose_the_texture(mesh1, mesh2):
-
     """
         Compare_mesh_angle
 
@@ -154,11 +116,7 @@ def superimpose_the_texture(mesh1, mesh2):
 # ==============================================================
 
 
-
-
-
 def display_model(mesh):
-
     """
         Compare_mesh_angle
 
