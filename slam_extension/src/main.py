@@ -16,7 +16,8 @@ Texture
 
 # Path of models
 args = ['../model/brain.ply',
-        '../model/brain_sphere_1_iters.ply',
+        '../model/brain_sphere_1_iters.ply']
+"""
         '../model/brain_sphere_2_iters.ply',
         '../model/brain_sphere_4_iters.ply',
         '../model/brain_sphere_8_iters.ply',
@@ -26,7 +27,7 @@ args = ['../model/brain.ply',
         '../model/brain_sphere_75_iters.ply',
         '../model/brain_sphere_100_iters.ply',
         '../model/brain_sphere_200_iters.ply'
-        ]
+        ]"""
 
 iters = [0,
          1,

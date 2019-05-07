@@ -116,6 +116,7 @@ def compare_mesh_list_area_curve(meshs):
 
         if max_sum_area < array_temp:
             max_sum_area = array_temp
+        print(array_temp)
         array_area_diff_sum.append(array_temp)
 
     fig, ax = plt.subplots(1, 1)
@@ -139,32 +140,49 @@ def compare_mesh_list_area_curve_pourcent(meshs):
         :param meshs
         :type array [trimesh,trimesh,...]
     """
-
     mesh1 = meshs[0]
-    print(mesh1.area_faces)
-    array_area_diff_sum = []
-    array_temp = 0
-    max_sum_area = 0
+
+    array_somme = []
     for i in range(0, len(meshs)):
-        area_diff = compare_mesh_area(mesh1, meshs[i])
+        array_somme.append(somme_norm(meshs[i]))
 
-        for p in range(0, len(area_diff)):
-            array_temp += area_diff[p]
-
-        if max_sum_area < array_temp:
-            max_sum_area = array_temp
-        array_area_diff_sum.append(array_temp)
-
-    fig, ax = plt.subplots(1, 1)
-    ax.plot([(meshs[i].metadata['iters']) for i in range(1, len(meshs))], array_area_diff_sum, 'ro-')
-    ax.set_title('areas compare')
-    ax.set_xlabel('Iterations')
-    ax.set_ylabel('Sum areas')
-    ax.axis([0, meshs[len(meshs) - 1].metadata['iters'] + (meshs[len(meshs) - 1].metadata['iters'] / 4), 0,
-             max_sum_area + (max_sum_area / 4)])
-    plt.show()
+    result_result = 0
+    for i in range(1, len(meshs)):
+        for p in range(0, len(meshs[i].area_faces)):
+            result = (mesh1.area_faces[p]/array_somme[0] - meshs[i].area_faces[p]/array_somme[i])
+            print(result)
+            if result > 0:
+                result_result -= abs(mesh1.area_faces[p]/array_somme[0] - abs(result)) / mesh1.area_faces[p]/array_somme[0] * 100
+            elif result < 0:
+                result_result += abs(mesh1.area_faces[p]/array_somme[0] - abs(result)) / mesh1.area_faces[p]/array_somme[0] * 100
+        print(result_result)
 
     pass
+
+""""
+            if area_diff[p] > 0:
+                result -= (abs(mesh1.area_faces[p] - area_diff[p]) / mesh1.area_faces[p]) * 100
+            elif area_diff[p] < 0:
+                result += (abs(mesh1.area_faces[p] - area_diff[p]) / mesh1.area_faces[p]) * 100
+        print(str(result) + "%")
+        array_result.append(result)"""
+
+"""
+    names = [(meshs[i].metadata['iters']) for i in range(1, len(meshs))]
+    values = array_result
+
+    fig, ax = plt.subplots(1, 1)
+    plt.bar(names, values)
+    ax.set_xlabel('Iterations')
+    ax.set_ylabel(' % difference areas')
+    plt.show()"""
+
+
+def somme_norm(mesh):
+    somme = 0
+    for i in range(0, len(mesh.area_faces)):
+        somme += mesh.area_faces[i]
+    return somme
 
 # ========================================================================
 # ======================= Superimpose the texture ========================
