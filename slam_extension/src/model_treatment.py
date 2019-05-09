@@ -50,6 +50,36 @@ def compare_mesh_list_angle(meshs):
 
     pass
 
+
+def compare_mesh_list_angle_pourcent(meshs):
+    """
+        compare_mesh_list_area_curve_pourcent
+
+        Compare all models by their areas with the first model in pourcent (first trismesh of array)
+
+        :param meshs
+        :type array [trimesh,trimesh,...]
+    """
+
+    mesh1 = meshs[0]
+    array_result = []
+
+    for i in range(1, len(meshs)):
+        result = list()
+        result.append(compare_mesh_angle(mesh1, meshs[i]))
+        print(np.sum(np.abs(result)/np.sum(mesh1.face_angles))*100)
+        array_result.append(np.sum(np.abs(result)/np.sum(mesh1.face_angles))*100)
+
+    names = [(meshs[i].metadata['iters']) for i in range(1, len(meshs))]
+    values = array_result
+
+    fig, ax = plt.subplots(1, 1)
+    plt.bar(names, values)
+    ax.set_title('Angles compare in pourcent')
+    ax.set_xlabel('Iterations')
+    ax.set_ylabel(' % difference angles')
+    pass
+
 # =====================================================
 # ======================= Area ========================
 # =====================================================
@@ -131,58 +161,75 @@ def compare_mesh_list_area_curve(meshs):
     pass
 
 
-def compare_mesh_list_area_curve_pourcent(meshs):
+def compare_mesh_list_area_pourcent(meshs):
     """
         compare_mesh_list_area_curve_pourcent
 
-        Compare all models by their areas with the first model (first trismesh of array) and draw a curve
+        Compare all models by their areas with the first model in pourcent (first trismesh of array)
 
         :param meshs
         :type array [trimesh,trimesh,...]
     """
+
     mesh1 = meshs[0]
-
-    array_somme = []
-    for i in range(0, len(meshs)):
-        array_somme.append(somme_norm(meshs[i]))
-
-    result_result = 0
+    array_result = []
     for i in range(1, len(meshs)):
+        result = list()
         for p in range(0, len(meshs[i].area_faces)):
-            result = (mesh1.area_faces[p]/array_somme[0] - meshs[i].area_faces[p]/array_somme[i])
-            print(result)
-            if result > 0:
-                result_result -= abs(mesh1.area_faces[p]/array_somme[0] - abs(result)) / mesh1.area_faces[p]/array_somme[0] * 100
-            elif result < 0:
-                result_result += abs(mesh1.area_faces[p]/array_somme[0] - abs(result)) / mesh1.area_faces[p]/array_somme[0] * 100
+            result.append((meshs[i].area_faces[p]/meshs[i].area - mesh1.area_faces[p]/mesh1.area))
+        result_result = np.sum(np.abs(result)) * 100
         print(result_result)
+        array_result.append(result_result)
 
-    pass
+    #splt.pyglet_plot(mesh1, np.array(result))
 
-""""
-            if area_diff[p] > 0:
-                result -= (abs(mesh1.area_faces[p] - area_diff[p]) / mesh1.area_faces[p]) * 100
-            elif area_diff[p] < 0:
-                result += (abs(mesh1.area_faces[p] - area_diff[p]) / mesh1.area_faces[p]) * 100
-        print(str(result) + "%")
-        array_result.append(result)"""
-
-"""
     names = [(meshs[i].metadata['iters']) for i in range(1, len(meshs))]
     values = array_result
 
     fig, ax = plt.subplots(1, 1)
     plt.bar(names, values)
+    ax.set_title('Areas compare in pourcent')
     ax.set_xlabel('Iterations')
     ax.set_ylabel(' % difference areas')
-    plt.show()"""
+    pass
 
 
-def somme_norm(mesh):
-    somme = 0
-    for i in range(0, len(mesh.area_faces)):
-        somme += mesh.area_faces[i]
-    return somme
+# ============================================================
+# ======================= Edge length ========================
+# ============================================================
+
+
+def compare_mesh_list_edge_pourcent(meshs):
+    """
+        compare_mesh_list_area_curve_pourcent
+
+        Compare all models by their areas with the first model in pourcent (first trismesh of array)
+
+        :param meshs
+        :type array [trimesh,trimesh,...]
+    """
+
+    mesh1 = meshs[0]
+    array_result = []
+    for i in range(1, len(meshs)):
+        result = list()
+        for p in range(0, len(meshs[i].edges_unique_length)):
+            result.append(abs((meshs[i].edges_unique_length[p] / np.sum(meshs[i].edges_unique_length) -
+                               mesh1.edges_unique_length[p] / np.sum(mesh1.edges_unique_length))))
+        result_result = np.sum(np.abs(result)) * 100
+        print(result_result)
+        array_result.append(result_result)
+
+    names = [(meshs[i].metadata['iters']) for i in range(1, len(meshs))]
+    values = array_result
+
+    fig, ax = plt.subplots(1, 1)
+    plt.bar(names, values)
+    ax.set_title('Edges compare in pourcent')
+    ax.set_xlabel('Iterations')
+    ax.set_ylabel(' % difference edge length')
+    pass
+
 
 # ========================================================================
 # ======================= Superimpose the texture ========================
@@ -207,7 +254,7 @@ def superimpose_the_texture(mesh1, mesh2):
     pass
 
 # ==============================================================
-# ======================= Display model/plot ========================
+# ======================= Display model/plot ===================
 # ==============================================================
 
 

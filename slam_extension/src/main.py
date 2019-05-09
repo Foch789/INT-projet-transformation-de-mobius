@@ -16,10 +16,9 @@ Texture
 
 # Path of models
 args = ['../model/brain.ply',
-        '../model/brain_sphere_1_iters.ply']
-"""
-        '../model/brain_sphere_2_iters.ply',
-        '../model/brain_sphere_4_iters.ply',
+        '../model/brain_sphere_1_iters.ply',
+        '../model/brain_sphere_2_iters.ply']
+"""'../model/brain_sphere_4_iters.ply',
         '../model/brain_sphere_8_iters.ply',
         '../model/brain_sphere_16_iters.ply',
         '../model/brain_sphere_32_iters.ply',
@@ -59,12 +58,15 @@ def main(argv):
             meshs.append(mesh)
 
         # compare_mesh_list_angle(meshs)
+        compare_mesh_list_angle_pourcent(meshs)
 
         # compare_mesh_list_area(meshs)
         # compare_mesh_list_area_curve(meshs)
-        compare_mesh_list_area_curve_pourcent(meshs)
+        compare_mesh_list_area_pourcent(meshs)
 
-        # display_plot()
+        compare_mesh_list_edge_pourcent(meshs)
+
+        display_plot()
         # display_model(meshs[1])
         # display_model(meshs[3])
         # superimpose_the_texture(meshs[0], meshs[1])
