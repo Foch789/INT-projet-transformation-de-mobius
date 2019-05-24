@@ -14,7 +14,7 @@ script:
     - flake8 slam_extension/src/
     - flake8 slam_extension/examples/
     - flake8 slam_extension/src/test/
-    - autopep8 --recursive --aggressive --diff --exit-code slam_extension/src/
-    - autopep8 --recursive --aggressive --diff --exit-code slam_extension/examples/
-    - autopep8 --recursive --aggressive --diff --exit-code slam_extension/src/test/
+    - autopep8 slam_extension/src/
+    - autopep8 slam_extension/examples/
+    - autopep8 slam_extension/src/test/
     - pytest -W default --cov=slam_extension/test/

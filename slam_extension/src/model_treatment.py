@@ -1,8 +1,5 @@
 import numpy as np
-import trimesh
-import trimesh.visual.color as col
 import matplotlib.pyplot as plt
-import multiprocessing as mp
 
 import slam.distortion as dist
 import slam.plot as splt
@@ -16,8 +13,10 @@ def compare_mesh_list_angle(meshs):
     """
         Compare_mesh_list_angle
 
-        Compare all models by their angles with the first model (first trismesh of array)
-        !!! Use display_plot() for the display of result !!! (display a histogram)
+        Compare all models by their angles with
+        the first model (first trismesh of array).
+        !!! Use display_plot() for the display of result !!!
+        (display a histogram)
 
         :param meshs
         :type array [trimesh,trimesh,...]
@@ -27,7 +26,10 @@ def compare_mesh_list_angle(meshs):
     for i in range(1, len(meshs)):
         angle_diff = dist.angle_difference(mesh1, meshs[i])
         f, ax = plt.subplots(1, 1)
-        ax.set_title('angles compare ' + mesh1.metadata['name'] + " to " + meshs[i].metadata['name'])
+        ax.set_title('angles compare '
+                     + mesh1.metadata['name']
+                     + " to "
+                     + meshs[i].metadata['name'])
         ax.hist(angle_diff.flatten(), 100)
         ax.grid(True)
 
@@ -38,8 +40,10 @@ def compare_mesh_list_angle_pourcent(meshs):
     """
         compare_mesh_list_area_curve_pourcent
 
-        Compare all models by their areas with the first model in pourcent (first trismesh of array)
-        !!! Use display_plot() for the display of result !!! (One display with histogram and one other with curve)
+        Compare all models by their areas with
+        the first model in pourcent (first trismesh of array).
+        !!! Use display_plot() for the display of result !!!
+        (One display with histogram and one other with curve)
 
         :param meshs
         :type array [trimesh,trimesh,...]
@@ -49,7 +53,8 @@ def compare_mesh_list_angle_pourcent(meshs):
     array_result = []
 
     for i in range(1, len(meshs)):
-        result = abs((meshs[i].face_angles/np.sum(meshs[i].face_angles)) - (mesh1.face_angles/np.sum(mesh1.face_angles)))
+        result = abs((meshs[i].face_angles/np.sum(meshs[i].face_angles))
+                     - (mesh1.face_angles/np.sum(mesh1.face_angles)))
         result_result = np.sum(result) * 100
         print(result_result)
         array_result.append(result_result)
@@ -69,7 +74,9 @@ def compare_mesh_list_angle_pourcent(meshs):
     ax2.set_xlabel('Iterations')
     ax2.set_ylabel('Areas compare in pourcent')
 
-    print("Average of distortion in pourcent (Angles): " + str(np.sum(array_result)/len(array_result)) + "%")
+    print("Average of distortion in pourcent (Angles): "
+          + str(np.sum(array_result)/len(array_result))
+          + "%")
 
     return np.sum(array_result) / len(array_result), values
     pass
@@ -83,8 +90,10 @@ def compare_mesh_list_area(meshs):
     """
         Compare_mesh_angle
 
-        Compare all models by their areas with the first model (first trismesh of array)
-        !!! Use display_plot() for the display of result !!! (display a histogram)
+        Compare all models by their areas with
+        the first model (first trismesh of array).
+        !!! Use display_plot() for the display of result !!!
+        (display a histogram)
 
         :param meshs
         :type array [trimesh,trimesh,...]
@@ -94,7 +103,10 @@ def compare_mesh_list_area(meshs):
     for i in range(1, len(meshs)):
         area_diff = dist.area_difference(mesh1, meshs[i])
         f, ax = plt.subplots(1, 1)
-        ax.set_title('areas compare ' + mesh1.metadata['name'] + " to " + meshs[i].metadata['name'])
+        ax.set_title('areas compare '
+                     + mesh1.metadata['name']
+                     + " to "
+                     + meshs[i].metadata['name'])
         ax.hist(area_diff.flatten(), 100)
         ax.grid(True)
 
@@ -105,8 +117,10 @@ def compare_mesh_list_area_pourcent(meshs):
     """
         compare_mesh_list_area_curve_pourcent
 
-        Compare all models by their areas with the first model in pourcent (first trismesh of array).
-        !!! Use display_plot() for the display of result !!! (One display with histogram and one other with curve)
+        Compare all models by their areas with
+        the first model in pourcent (first trismesh of array).
+        !!! Use display_plot() for the display of result !!!
+        (One display with histogram and one other with curve)
 
         :param meshs
         :type array [trimesh,trimesh,...]
@@ -116,7 +130,8 @@ def compare_mesh_list_area_pourcent(meshs):
     array_result = []
 
     for i in range(1, len(meshs)):
-        result = abs((meshs[i].area_faces/meshs[i].area) - (mesh1.area_faces/mesh1.area))
+        result = abs((meshs[i].area_faces/meshs[i].area)
+                     - (mesh1.area_faces/mesh1.area))
         result_result = np.sum(result) * 100
         print(result_result)
         array_result.append(result_result)
@@ -136,7 +151,9 @@ def compare_mesh_list_area_pourcent(meshs):
     ax2.set_xlabel('Iterations')
     ax2.set_ylabel('Areas compare in pourcent')
 
-    print("Average of distortion in pourcent (Areas): " + str(np.sum(array_result)/len(array_result)) + "%")
+    print("Average of distortion in pourcent (Areas): "
+          + str(np.sum(array_result)/len(array_result))
+          + "%")
 
     return np.sum(array_result) / len(array_result), values
     pass
@@ -151,8 +168,10 @@ def compare_mesh_list_edge_pourcent(meshs):
     """
         compare_mesh_list_area_curve_pourcent
 
-        Compare all models by their edges with the first model in pourcent (first trismesh of array)
-        !!! Use display_plot() for the display of result !!! (One display with histogram and one other with curve)
+        Compare all models by their edges with
+        the first model in pourcent (first trismesh of array)
+        !!! Use display_plot() for the display of result !!!
+        (One display with histogram and one other with curve)
 
         :param meshs
         :type array [trimesh,trimesh,...]
@@ -160,12 +179,17 @@ def compare_mesh_list_edge_pourcent(meshs):
     mesh1 = meshs[0]
     array_result = []
     for i in range(1, len(meshs)):
-        result = abs((meshs[i].edges_unique_length / np.sum(meshs[i].edges_unique_length)) - (mesh1.edges_unique_length / np.sum(mesh1.edges_unique_length)))
+        result = abs((meshs[i].edges_unique_length
+                      / np.sum(meshs[i].edges_unique_length))
+                     - (mesh1.edges_unique_length
+                        / np.sum(mesh1.edges_unique_length)))
         result_result = np.sum(result) * 100
         print(result_result)
         array_result.append(result_result)
 
-    names = [(meshs[i].metadata['iters']) for i in range(1, len(meshs))]# len(meshs)
+    names = [(meshs[i].metadata['iters'])
+             for i in range(1, len(meshs))]  # len(meshs)
+
     values = array_result
 
     # fig, ax = plt.subplots(1, 1)
@@ -180,7 +204,9 @@ def compare_mesh_list_edge_pourcent(meshs):
     ax2.set_xlabel('Iterations')
     ax2.set_ylabel('Edges compare in pourcent')
 
-    print("Average of distortion in pourcent (Edges length): " + str(np.sum(array_result) / len(array_result)) + "%")
+    print("Average of distortion in pourcent (Edges length): "
+          + str(np.sum(array_result) / len(array_result))
+          + "%")
 
     return np.sum(array_result) / len(array_result), values
     pass

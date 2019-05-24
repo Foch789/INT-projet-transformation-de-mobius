@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ecc4d3b7-11c3-4425-b144-1826970caa64" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/test/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_model_treatment.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_model_treatment.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/histogram.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/histogram.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/superpose_texture.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/superpose_texture.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/texture_distorsion_on_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/texture_distorsion_on_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model_treatment.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model_treatment.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,40 +17,25 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/texture_distorsion_on_model.py">
+        <entry file="file://$PROJECT_DIR$/examples/superpose_texture.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+            <state relative-caret-position="244">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
               <folding>
-                <element signature="e#0#33#0" expanded="true" />
+                <element signature="e#0#14#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/test_model_treatment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../slam/tests/test_distortion.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model_treatment.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
+            <state relative-caret-position="225">
+              <caret line="133" column="21" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,17 +73,17 @@
         <option value="$PROJECT_DIR$/examples/transform_model_to_sphere.py" />
         <option value="$PROJECT_DIR$/examples/export_gii_to_ply" />
         <option value="$PROJECT_DIR$/examples/export_gii_to_ply.py" />
-        <option value="$PROJECT_DIR$/examples/superpose_texture.py" />
-        <option value="$PROJECT_DIR$/examples/histogram.py" />
-        <option value="$PROJECT_DIR$/examples/texture_distorsion_on_model.py" />
         <option value="$PROJECT_DIR$/src/main.py" />
-        <option value="$PROJECT_DIR$/src/model_treatment.py" />
         <option value="$PROJECT_DIR$/test/test_model_treat.py" />
         <option value="$PROJECT_DIR$/test/test_model_treatment.py" />
+        <option value="$PROJECT_DIR$/examples/histogram.py" />
+        <option value="$PROJECT_DIR$/examples/texture_distorsion_on_model.py" />
+        <option value="$PROJECT_DIR$/examples/superpose_texture.py" />
+        <option value="$PROJECT_DIR$/src/model_treatment.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="146" />
     <option name="width" value="1118" />
     <option name="height" value="787" />
@@ -128,10 +115,6 @@
               <item name="slam_extension" type="b2602c69:ProjectViewProjectNode" />
               <item name="slam_extension" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="slam_extension" type="b2602c69:ProjectViewProjectNode" />
-              <item name="slam" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -166,7 +149,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test_model_treatment">
+  <component name="RunManager" selected="Python.histogram">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="slam_extension" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -188,27 +171,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="example_basics (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="slam" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/trimeshtest_3.6/bin/python" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../slam/examples/example_basics.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="export_gii_to_ply" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="slam_extension" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -222,6 +184,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/export_gii_to_ply.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="histogram" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="slam_extension" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/miniconda3/envs/trimeshtest_3.6/bin/python" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/histogram.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -311,19 +294,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.example_basics (1)" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python.export_gii_to_ply" />
       <item itemvalue="Python.texture_distorsion_on_model" />
       <item itemvalue="Python.test_model_treatment" />
+      <item itemvalue="Python.histogram" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.histogram" />
         <item itemvalue="Python.test_model_treatment" />
         <item itemvalue="Python.texture_distorsion_on_model" />
         <item itemvalue="Python.export_gii_to_ply" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.example_basics (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -358,15 +341,15 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49894515" weight="0.3295838" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9277426" weight="0.35658044" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.9266878" weight="0.35658044" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49894515" weight="0.39932507" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295838" />
       <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.4994726" weight="0.3295838" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50263715" side_tool="true" visible="true" weight="0.33070865" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.22497188" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" sideWeight="0.49736288" visible="true" weight="0.33070865" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50158226" side_tool="true" visible="true" weight="0.5534308" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49841774" visible="true" weight="0.5534308" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49736288" weight="0.33070865" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -528,16 +511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../slam/examples/example_plot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/miniconda3/envs/trimeshtest_3.6/lib/python3.6/site-packages/trimesh/exchange/ply.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6711">
@@ -581,23 +554,6 @@
     <entry file="file://$PROJECT_DIR$/examples/export_gii_to_ply" />
     <entry file="file://$PROJECT_DIR$/examples/foetus_treatment" />
     <entry file="file://$PROJECT_DIR$/examples/histogram" />
-    <entry file="file://$PROJECT_DIR$/examples/superpose_texture.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="59" lean-forward="true" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/histogram.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-279">
-          <caret line="2" selection-start-line="2" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/examples/foetus_treatment.py" />
     <entry file="file://$PROJECT_DIR$/src/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
@@ -621,20 +577,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/texture_distorsion_on_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../slam/tests/test_distortion.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_model_treat.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_model_treatment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -645,20 +601,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_model_treat.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model_treatment.py">
+    <entry file="file://$PROJECT_DIR$/../../slam/examples/example_plot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
+        <state relative-caret-position="228">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_model_treatment.py">
+    <entry file="file://$PROJECT_DIR$/examples/histogram.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+        <state relative-caret-position="1520">
+          <caret line="80" column="48" lean-forward="true" selection-start-line="80" selection-start-column="48" selection-end-line="80" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/texture_distorsion_on_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/superpose_texture.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model_treatment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="133" column="21" selection-start-line="133" selection-start-column="21" selection-end-line="133" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
