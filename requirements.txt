@@ -1,0 +1,5 @@
+numpy
+trimesh
+matplotlib
+nibabel
+gauzias/slam

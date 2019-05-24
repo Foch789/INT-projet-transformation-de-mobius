@@ -1,1 +1,19 @@
-language: python 
+language: python
+
+install:
+  - pip install -r requirements.txt
+  # install testing stuff
+  - pip install -U pytest pytest-cov
+  # coveralls started failing to install on Python 3.4 so make it optional
+  - pip install coveralls || true
+  # install style checkers
+  - pip install -U autopep8 flake8
+  
+script:
+    - flake8 slam_extension/src/
+    - flake8 slam_extension/examples/
+    - flake8 slam_extension/src/test/
+    - autopep8 --recursive --aggressive --diff --exit-code slam_extension/src/
+    - autopep8 --recursive --aggressive --diff --exit-code slam_extension/examples/
+    - autopep8 --recursive --aggressive --diff --exit-code slam_extension/src/test/
+    - pytest -W default --cov=slam_extension/src/
