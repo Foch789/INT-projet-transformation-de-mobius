@@ -17,4 +17,4 @@ script:
     - autopep8 --recursive --aggressive --diff --exit-code slam_extension/src/
     - autopep8 --recursive --aggressive --diff --exit-code slam_extension/examples/
     - autopep8 --recursive --aggressive --diff --exit-code slam_extension/src/test/
-    - pytest -W default --cov=slam_extension/src/
+    - pytest -W default --cov=slam_extension/test/
