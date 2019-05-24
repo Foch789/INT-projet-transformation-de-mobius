@@ -202,9 +202,14 @@ def superimpose_the_texture(mesh1, mesh2):
 
         :param mesh2
         :type trimesh
+
+        :return new mesh1 with texture
     """
 
-    mesh1.visual.face_colors = mesh2.visual.face_colors
+    mesh_copy = mesh1
+    mesh_copy.visual.face_colors = mesh2.visual.face_colors
+
+    return mesh_copy
 
     pass
 
