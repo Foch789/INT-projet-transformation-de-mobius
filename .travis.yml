@@ -8,6 +8,7 @@ install:
   - pip install coveralls || true
   # install style checkers
   - pip install -U autopep8 flake8
+  # install slam
   
 script:
     - flake8 slam_extension/src/
