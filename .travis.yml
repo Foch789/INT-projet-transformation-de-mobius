@@ -2,8 +2,6 @@ language: python
 
 install:
   - pip install -r requirements.txt
-  # install testing stuff
-  - pip install -U pytest pytest-cov<2.6.0
   # coveralls started failing to install on Python 3.4 so make it optional
   - pip install coveralls || true
   # install style checkers

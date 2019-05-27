@@ -2,3 +2,5 @@ numpy
 trimesh
 matplotlib
 nibabel
+pytest
+pytest-cov<2.6.0
