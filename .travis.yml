@@ -18,7 +18,7 @@ script:
   - autopep8 slam_extension/src/
   - autopep8 slam_extension/examples/
   - autopep8 slam_extension/src/test/
-  - pytest --cov=slam_extension/src/model_treatment.py
+  - pytest
 
 after_success:
   - coveralls
