@@ -5,3 +5,7 @@ Internship in Institute of Neuroscience of la Timone for my computer licence
 [![Coverage Status](https://coveralls.io/repos/github/Foch789/INT-projet-transformation-de-mobius/badge.svg?branch=master)](https://coveralls.io/github/Foch789/INT-projet-transformation-de-mobius?branch=master)
 
 **Project :  Transformation de Mobius**
+
+## Required
+
+This project need [Slam project](https://github.com/gauzias/slam).

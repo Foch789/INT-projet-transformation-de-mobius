@@ -1,4 +1,5 @@
 # from src.model_treatment import *
+import trimesh
 import src.model_treatment as mt
 
 
@@ -41,7 +42,7 @@ if len(model) >= 2:
     meshs = []
     for i in range(0, len(model)):
         print(model[i])
-        mesh = mt.trimesh.load(model[i])
+        mesh = trimesh.load(model[i])
         mesh.metadata = {'name': name_fil(model[i]), 'iters': iters[i]}
         meshs.append(mesh)
 

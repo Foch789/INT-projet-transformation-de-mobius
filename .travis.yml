@@ -17,7 +17,7 @@ script:
   - autopep8 slam_extension/src/
   - autopep8 slam_extension/examples/
   - autopep8 slam_extension/src/test/
-  - pytest -W default --cov=slam_extension/test/
+  - pytest slam_extension/test/test_model_treatment.py --cov=slam_extension/src/model_treatment.py
 
 
 after_success:

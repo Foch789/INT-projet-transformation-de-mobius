@@ -34,7 +34,3 @@ class TestModelTreatment(unittest.TestCase):
     def testdisplay_plot(self):
         assert True
     pass
-
-
-if __name__ == '__main__':
-    unittest.main()
