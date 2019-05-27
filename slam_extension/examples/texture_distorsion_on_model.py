@@ -4,7 +4,7 @@ import numpy as np
 import src.model_treatment as mt
 
 import slam.texture as texture
-import slam.io as splt
+import slam.plot as splt
 
 
 def name_fil(path_file):

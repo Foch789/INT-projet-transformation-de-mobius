@@ -1,3 +1,8 @@
+"""@package docstring
+Documentation for this module.
+More details.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 

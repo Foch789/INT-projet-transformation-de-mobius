@@ -9,12 +9,16 @@ install:
   # install style checkers
   - pip install -U autopep8 flake8
   # install slam
-  
+
 script:
-    - flake8 slam_extension/src/
-    - flake8 slam_extension/examples/
-    - flake8 slam_extension/src/test/
-    - autopep8 slam_extension/src/
-    - autopep8 slam_extension/examples/
-    - autopep8 slam_extension/src/test/
-    - pytest -W default --cov=slam_extension/test/
+  - flake8 slam_extension/src/
+  - flake8 slam_extension/examples/
+  - flake8 slam_extension/src/test/
+  - autopep8 slam_extension/src/
+  - autopep8 slam_extension/examples/
+  - autopep8 slam_extension/src/test/
+  - pytest -W default --cov=slam_extension/test/
+
+
+after_success:
+  - coveralls
