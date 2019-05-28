@@ -1,5 +1,7 @@
 # from src.model_treatment import *
 import trimesh
+import matplotlib.pyplot as plt
+
 import src.model_treatment as mt
 
 
@@ -75,11 +77,11 @@ print("Average of distortion in pourcent : " +
 # ax.set_xlabel('Iterations')
 # ax.set_ylabel(' % difference distortion')
 
-fig2, ax2 = mt.plt.subplots(1, 1)
+fig2, ax2 = plt.subplots(1, 1)
 ax2.plot(names, values, 'ro-')
 ax2.set_title('Distortion compare in pourcent curve')
 ax2.set_xlabel('Iterations')
 ax2.set_ylabel('Distortion compare in pourcent')
 
 # Display
-mt.display_plot()
+plt.show()

@@ -243,34 +243,3 @@ def superimpose_the_texture(mesh1, mesh2):
     return mesh_copy
 
     pass
-
-# ==============================================================
-# ======================= Display model/plot ===================
-# ==============================================================
-
-
-def display_model(mesh):
-    """
-        Display_model
-
-        Display the model (by a window)
-
-        :param mesh1
-        :type trimesh
-    """
-    # splt.pyglet_plot(mesh1, np.array(result))
-
-    splt.pyglet_plot(mesh)
-
-    pass
-
-
-def display_plot():
-    """
-        Display_plot
-
-        Display of server (web) all the information in the plot
-    """
-    plt.show()
-
-    pass

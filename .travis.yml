@@ -16,7 +16,7 @@ script:
   - autopep8 slam_extension/src/
   - autopep8 slam_extension/examples/
   - autopep8 slam_extension/src/test/
-  - pytest -W default --cov=slam_extension/src/
+  - pytest -W default --cov=slam_extension/src/ slam_extension/tests/
 
 after_success:
   - coveralls
