@@ -1,6 +1,6 @@
 import trimesh
 
-import src.model_treatment as mt
+import src.compare_model as mt
 
 
 def test_compare_mesh_list_angle():
@@ -10,7 +10,7 @@ def test_compare_mesh_list_angle():
     model = trimesh.load(model_path)
     model_sphere = trimesh.load(model_sphere_path)
 
-    brain_transform = mt.superimpose_the_texture(model,model_sphere)
+    brain_transform = mt.superimpose_the_texture(model, model_sphere)
 
     assert isinstance(brain_transform, trimesh)
 

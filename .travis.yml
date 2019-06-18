@@ -8,6 +8,7 @@ install:
   - pip install -U autopep8 flake8
   # install coveralls
   - pip install -U python-coveralls
+  - git clone https://github.com/gauzias/slam.git
 
 script:
   - flake8 slam_extension/src/
@@ -16,7 +17,7 @@ script:
   - autopep8 slam_extension/src/
   - autopep8 slam_extension/examples/
   - autopep8 slam_extension/src/test/
-  - pytest -W default --cov=slam_extension/src/ slam_extension/tests/
+  - pytest -W default --cov=slam_extension/tests/
 
 after_success:
   - coveralls
