@@ -6,8 +6,8 @@ import trimesh
 import math
 from scipy.optimize import minimize
 
-import src.stereo_projection as sp
-import src.compare_model as cp
+import slam_extension.src.stereo_projection as sp
+import slam_extension.src.compare_model as cp
 
 import slam.distortion as sd
 
@@ -27,13 +27,13 @@ def mobius_transformation(a, b, c, d, array_complex):
             Using to transform the plan with complex number.
             (Translate / rotate the plan)
 
-            :param a: Complex number or Integer
+            :param a: Complex
 
-            :param b: Complex number or Integer
+            :param b: Complex
 
-            :param c: Complex number or Integer
+            :param c: Complex
 
-            :param d: Complex number or Integer
+            :param d: Complex
 
             :param array_complex: This array represent the complex plan.
             :type array_complex: array[complex_number]
@@ -449,7 +449,7 @@ def translate_a(model_sphere_color, plan_complex, model_base,
                            b=complex(0., 0.),
                            c=complex(0., 0.),
                            d=complex(1., 0.),
-                           pas=1,
+                           step=1,
                            iteration=100):
     """
             translate_a
@@ -474,7 +474,7 @@ def translate_a(model_sphere_color, plan_complex, model_base,
             :param d: Complex number or Integer (parameter to transform the plan)
             :type d: Complex or Integer
 
-            :param pas: step to modify the parameter a
+            :param step: step to modify the parameter a
 
             :param iteration: Number of iterations
 
@@ -487,16 +487,18 @@ def translate_a(model_sphere_color, plan_complex, model_base,
     result_all_area = [[], []]
     result_all_area_complex = []
     result_all_area_value = []
-    array_name = []
+    all_steps = []
 
-    t = 0
+    t = 1
 
     angle_first_value = sd.angle_difference(mesh1=model_sphere_color, mesh2=model_base)
     angle_first_value = np.sum(angle_first_value, axis=1)
     angle_first_value = get_average(angle_first_value)
-    area_first_value = cp.compare_meshs_area_median(model_base, model_sphere_color)
+    area_first_value = get_mediane(np.abs(sd.area_difference(model_sphere_color, model_base))/np.sum(model_base.area_faces)) *100
+    print(area_first_value)
+    #cp.compare_meshs_area_median(model_base, model_sphere_color)
 
-    array_name.append(t)
+    all_steps.append(t)
 
     result_all_angle_complex.append([0, 0, 0, 0])
     result_all_angle_value.append(angle_first_value)
@@ -506,9 +508,9 @@ def translate_a(model_sphere_color, plan_complex, model_base,
 
     for i in range(0, iteration):
 
-        t += pas
-        array_name.append(t)
-        a = complex(t, t)
+        t += step
+        all_steps.append(t)
+        a = complex(t, 0)
 
         plan_complex_transfo = mobius_transformation(a, b, c, d, plan_complex)
 
@@ -525,10 +527,10 @@ def translate_a(model_sphere_color, plan_complex, model_base,
         result_angle = np.sum(result_angle, axis=1)
         result_angle_mediane = get_average(result_angle)
 
-        model_transform_sphere_area_norm = get_array_normalize(model_transform_sphere.area_faces)
-        model_base_area_norm = get_array_normalize(model_base.area_faces)
+        #model_transform_sphere_area_norm = get_array_normalize(model_transform_sphere.area_faces)
+        #model_base_area_norm = get_array_normalize(model_base.area_faces)
 
-        result_area = get_absolute_value_array(model_transform_sphere_area_norm, model_base_area_norm) / model_base_area_norm
+        result_area = np.abs(sd.area_difference(model_transform_sphere, model_base))/np.sum(model_base.area_faces)#get_absolute_value_array(model_transform_sphere_area_norm, model_base_area_norm) / model_base_area_norm
         result_area_mediane = get_mediane(result_area) * 100
 
         result_all_angle_complex.append([a, b, c, d])
@@ -537,9 +539,9 @@ def translate_a(model_sphere_color, plan_complex, model_base,
         result_all_area_complex.append([a, b, c, d])
         result_all_area_value.append(result_area_mediane)
 
-    cp.plot_compare_2_axis_y(array_name, result_all_area_value, result_all_angle_value, legendy="Area evolution",
+    cp.plot_compare_2_axis_y(all_steps, result_all_area_value, result_all_angle_value, legendy="Area evolution",
                              legendy2="Angle evolution", title="Distortion evolution mediane for parameter a",
-                             label_x="Step " + str(pas) + " of a",  label_y="Distortion mm² (mediane) %",
+                             label_x="Step " + str(step) + " of a",  label_y="Distortion (mediane) %",
                              label_y2="Distortion angle average", display_best_minimum=True, display_best_maximum=True,
                              min_y2=np.pi * -1, max_y2=np.pi)
 

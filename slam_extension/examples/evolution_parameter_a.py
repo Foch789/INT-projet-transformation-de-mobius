@@ -7,9 +7,10 @@ import matplotlib.pyplot as plt
 
 import slam.plot as splt
 
-import src.transformation_sphere as ts
-import src.compare_model as cp
-import src.stereo_projection as sp
+from slam_extension.src import transformation_sphere as ts
+import slam_extension.src.compare_model as cp
+import slam_extension.src.stereo_projection as sp
+import slam.distortion as sd
 
 models = ['../model/foetus/foetus1.ply',
           '../model/foetus/foetus1_sphere.ply',
@@ -36,7 +37,8 @@ plan_sphere = sp.stereo_projection(model_sphere_color.vertices.copy())
 # Load the new model Trimesh with the new vertices and color of the sphere.
 plan_sphere_visu = trimesh.Trimesh(vertices=plan_sphere,
                                    faces=model_sphere_color.faces.copy(),
-                                   vertex_colors=model_sphere_color.visual.vertex_colors.copy())
+                                   vertex_colors=model_sphere_color.visual.vertex_colors.copy(),
+                                   process=False)
 
 # Display the plan of the sphere
 # splt.pyglet_plot(plan_sphere_visu, caption="Plan sphere")
@@ -50,8 +52,8 @@ plan_complex = plan_sphere[:, 0] + (1.0j * plan_sphere[:, 1])
 ================================================================================
 """
 
-angle_array, area_array = ts.translate_a(model_sphere_color, plan_complex, model_base, pas=radius_of_sphere/100.0,
-                                         iteration=100)
+angle_array, area_array = ts.translate_a(model_sphere_color, plan_complex, model_base, step=0.1,
+                                         iteration=50)
 
 plt.show()
 
@@ -62,7 +64,8 @@ res = [area_array[len(area_array)-1][0][0][0],
        area_array[len(area_array)-1][0][0][2],
        area_array[len(area_array)-1][0][0][3]]
 
-plan_complex_transfo = ts.mobius_transformation(res[0], res[1], res[2], res[3], plan_complex)
+#plan_complex_transfo = ts.mobius_transformation(res[0], res[1], res[2], res[3], plan_complex)
+plan_complex_transfo = ts.mobius_transformation(complex(1.5, 0.), complex(0., 0.), complex(0., 0.), complex(1., 0.), plan_complex)
 
 real_array = plan_complex_transfo[:].real
 imag_array = plan_complex_transfo[:].imag
@@ -74,9 +77,13 @@ for i in range(0, len(real_array)):
 result_plan_complex = np.array(result_plan_complex)
 
 new_vertices_sphere = sp.inverse_stereo_projection(result_plan_complex)
+
 model_transform_sphere = trimesh.Trimesh(vertices=new_vertices_sphere,
                                          faces=model_sphere_color.faces,
-                                         vertex_colors=model_sphere_color.visual.vertex_colors)
+                                         vertex_colors=model_sphere_color.visual.vertex_colors,
+                                         process=False)
+print('mean angle dist='+str(np.mean(sd.angle_difference(mesh1=model_transform_sphere, mesh2=model_base))))
+print('area dist='+str(np.median(sd.area_difference(mesh1=model_transform_sphere, mesh2=model_base))))
 
 cp.compare_meshs_angle_median(model_base, model_transform_sphere)
 cp.compare_meshs_area_median(model_base, model_transform_sphere)
@@ -109,7 +116,8 @@ result_plan_complex = np.array(result_plan_complex)
 new_vertices_sphere = sp.inverse_stereo_projection(result_plan_complex)
 model_transform_sphere = trimesh.Trimesh(vertices=new_vertices_sphere,
                                          faces=model_sphere_color.faces,
-                                         vertex_colors=model_sphere_color.visual.vertex_colors)
+                                         vertex_colors=model_sphere_color.visual.vertex_colors,
+                                         process=False)
 splt.pyglet_plot(model_transform_sphere)
 
 cp.compare_meshs_angle_median(model_base, model_transform_sphere)
