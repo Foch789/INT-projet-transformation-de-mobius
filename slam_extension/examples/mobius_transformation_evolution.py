@@ -9,10 +9,13 @@ import matplotlib.pyplot as plt
 import slam.plot as splt
 
 import src.transformation_sphere as ts
+import src.compare_model as cp
 import src.stereo_projection as sp
 
 models = ['../model/foetus/foetus1.ply',
-          '../model/foetus/foetus1_sphere.ply']
+          '../model/foetus/foetus1_sphere.ply',
+          '../model/brain/brain.ply',
+          '../model/brain/brain_sphere_100_iters.ply']
 
 """
 ================================================================================
@@ -20,15 +23,22 @@ models = ['../model/foetus/foetus1.ply',
 ================================================================================
 """
 
-model_base = trimesh.load(models[0])
+model_base = trimesh.load(models[0])  # Foetus
+model_sphere = trimesh.load(models[1])  # Foetus sphere
+meshs = [model_base, model_sphere]
 
-model_sphere = trimesh.load(models[1])
+splt.pyglet_plot(model_base, caption="Foetus")
+
+
+cp.compare_mesh_list_angle_pourcent(meshs)
+cp.compare_mesh_list_area_pourcent(meshs)
 
 model_sphere_color = model_sphere.copy()
 
 # Display the sphere with color (Red = North / Blue = South)
 splt.pyglet_plot(model_sphere_color, model_sphere_color.vertices[:, 2], caption="Sphere")
 
+plt.show()
 
 """
 =============================================================================
@@ -62,9 +72,16 @@ plan_complex = plan_sphere[:, 0] + (1.0j * plan_sphere[:, 1])
 ===================================================================
 """
 
-# res = ts.random_complex(model_sphere_color, plan_complex, model_base)
+res = ts.random_complex_median(model_sphere_color, plan_complex, model_base, min_random=-100,
+                        max_random=100, nbr_iteration=1000)
 
-res = ts.random_complex_with_minimize(model_sphere_color, plan_complex, model_base)
+res = ts.random_complex_average(model_sphere_color, plan_complex, model_base, min_random=-100,
+                        max_random=100, nbr_iteration=1000)
+
+res = ts.random_complex_abs_value_pourcent(model_sphere_color, plan_complex, model_base, min_random=-100,
+                        max_random=100, nbr_iteration=1000)
+
+# res = ts.random_complex_with_minimize(model_sphere_color, plan_complex, model_base)
 
 """
 ==================================================================
@@ -72,7 +89,7 @@ res = ts.random_complex_with_minimize(model_sphere_color, plan_complex, model_ba
 ==================================================================
 """
 
-# res = mobius_angle_complex_a(model_sphere_color, plan_complex, model_base)
+# res = ts.mobius_angle_complex_a(model_sphere_color, plan_complex, model_base)
 
 """
 ================================================================================
@@ -85,44 +102,13 @@ res = ts.random_complex_with_minimize(model_sphere_color, plan_complex, model_ba
 # c = complex(0., 0.0)
 # d = complex(1., 0.0)
 #
-# print(ts.complex_to_real([a, b, c, d]))
-#
-# array_area_result = []
-# array_angle_result = []
-#
-# res = minimize(ts.func_for_minimize,
-#                ts.complex_to_real([a, b, c, d]),
-#                args=(plan_complex, model_sphere_color, model_base, array_angle_result, array_area_result),
-#                method='Nelder-Mead',
-#                options={'disp': True})
-#
-# # res = dual_annealing(ts.func_for_minimize,
-# #                      bounds=npma.repmat([-100, 100], 8, 1),
-# #                      args=(plan_complex, model_sphere_color, model_base))
-# #
-# res = ts.real_to_complex(res.x)
-#
-# array_name_minimize = []
-#
-# for i in range(0, len(array_area_result)):
-#     array_name_minimize.append(i)
-#
-# fig, ax = plt.subplots(1, 1)
-# plt.bar(array_name_minimize, array_angle_result)
-# ax.set_title('Distorsion angle evolution minimize')
-# ax.set_xlabel('Number of tests')
-# ax.set_ylabel('% distorsion angle')
-#
-# fig, ax = plt.subplots(1, 1)
-# plt.bar(array_name_minimize, array_area_result)
-# ax.set_title('Distorsion area evolution minimize')
-# ax.set_xlabel('Number of tests')
-# ax.set_ylabel('% distorsion area')
+# res = ts.algo_minimize(a, b, c, d, model_sphere_color, plan_complex, model_base)
+
 
 """
-=========================================================================
-======================= Compute the new plan ============================
-=========================================================================
+======================================================================================================
+======================= Compute the new plan with the complex number find ============================
+======================================================================================================
 """
 
 plan_complex_transfo = ts.mobius_transformation(res[0], res[1], res[2], res[3], plan_complex)
@@ -163,11 +149,18 @@ splt.pyglet_plot(model_transform_sphere)
 
 """
 =========================================================
-======================= Histogram =======================
+======================= Display Histogram =======================
 =========================================================
 """
 
 plt.show()
+
+
+"""
+=====================================================================================
+======================= Display model with texture distortion =======================
+=====================================================================================
+"""
 
 result_angle = abs((model_transform_sphere.face_angles / np.sum(model_transform_sphere.face_angles))
                    - (model_base.face_angles / np.sum(model_base.face_angles)))
@@ -176,7 +169,10 @@ result_angle = np.sum(result_angle, axis=1)
 result_area = abs((model_transform_sphere.area_faces / np.sum(model_transform_sphere.area_faces))
                   - (model_base.area_faces / np.sum(model_base.area_faces)))
 
+
 splt.pyglet_plot(model_base, result_angle, plot_colormap=True, caption="Difference angle")
 splt.pyglet_plot(model_base, result_area, plot_colormap=True, caption="Difference area")
 splt.pyglet_plot(model_transform_sphere, result_area, caption="Difference area")
-splt.pyglet_plot(model_transform_sphere, abs(model_transform_sphere.area_faces - model_sphere_color.area_faces), caption="Difference area between model no transfo and model transfo")
+splt.pyglet_plot(model_transform_sphere,
+                 abs(model_transform_sphere.area_faces - model_sphere_color.area_faces),
+                 caption="Difference area between model no transfo and model transfo")

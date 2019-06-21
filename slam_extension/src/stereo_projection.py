@@ -5,6 +5,7 @@ import os
 import matplotlib.pyplot as plt
 import nibabel.gifti as ng
 
+
 def graph_stereo_projection(graph_vertices, graph_center, sphere_radius=None, sphere_center=None):
     """
     compute the stereographic projection of the graph vertices onto the horizontal plane with graph_center at the coordinate [0,0,-1]

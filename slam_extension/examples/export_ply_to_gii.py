@@ -11,4 +11,3 @@ for i in range(0, len(model)):
     model_export = trimesh.load(model_path)
     model_export.show()
     sio.write_mesh(model_export, model[i][:-3]+'gii')
-

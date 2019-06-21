@@ -9,16 +9,14 @@ def name_fil(path_file):
 
         Take juste the name of the file
 
-        :param path_file
-        :type String
+        :param path_file: Path of the file
 
         :return the name of the file
-        :type String
     """
     path_file = str(path_file)
     name = ""
-    for i in range(path_file.find("brain"), len(path_file)):
-        name += (path_file[i])
+    for it in range(path_file.find("brain"), len(path_file)):
+        name += (path_file[it])
 
     return name
 
